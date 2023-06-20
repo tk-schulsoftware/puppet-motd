@@ -34,12 +34,10 @@
 # [Remember: No empty lines between comments and class definition]
 class motd(
   $ensure = 'present',
-  $config_file = $motd::params::config_file,
-  $template = $motd::params::template,
-  $inline_template = ''
+  Stdlib::Absolutepath $config_file = $motd::params::config_file,
+  String $template = $motd::params::template,
+  String $inline_template = ''
 ) inherits motd::params {
-
-  validate_absolute_path($config_file)
 
   if $ensure == 'present' {
     $ensure_real = 'file'
